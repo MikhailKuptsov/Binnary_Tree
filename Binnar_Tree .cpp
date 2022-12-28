@@ -3,6 +3,32 @@
 
 using namespace std;
 
+void BinaryTree::remove(int n){
+	TreeElement* current = recursiveFindElement
+	(root, n);
+	if (current == nullptr) return;
+	recursiveRemove(n, current);
+	
+	 
+}
+
+void BinaryTree::recursiveRemove(int n, TreeElement* r)
+{
+	if (r == nullptr) return;
+	recursiveRemove(n, r->getRight());
+	recursiveRemove(n, r->getLeft());
+	if (r->getBack()->getRight() == r)
+	{
+		r->getBack()->setRight(nullptr);
+	}
+	else
+	{
+		r->getBack()->setLeft(nullptr);
+	}
+	
+	delete r;
+}
+
 int main() {
     setlocale(LC_ALL, "Russian");
     BinaryTree<int>* binaryTree = new BinaryTree<int>();
