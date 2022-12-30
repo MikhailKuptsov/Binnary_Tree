@@ -3,20 +3,20 @@
 
 using namespace std;
 
-void BinaryTree::remove(int n){
+void BinaryTree::move(int n){
 	TreeElement* current = recursiveFindElement
 	(root, n);
 	if (current == nullptr) return;
-	recursiveRemove(n, current);
+	moveSubTree(n, current);
 	
 	 
 }
 
-void BinaryTree::recursiveRemove(int n, TreeElement* r)
+void BinaryTree::moveSubTree(int n, TreeElement* r)
 {
 	if (r == nullptr) return;
-	recursiveRemove(n, r->getRight());
-	recursiveRemove(n, r->getLeft());
+	moveSubTree(n, n->getRight());
+	moveSubTree(n, n->getLeft());
 	if (r->getBack()->getRight() == r)
 	{
 		r->getBack()->setRight(nullptr);
